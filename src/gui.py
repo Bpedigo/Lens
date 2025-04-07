@@ -301,9 +301,11 @@ class TextEditorApp(ctk.CTk):
                     if analysis_type == "Single Prompt 1":
                         with open(self.prompt_handler.prompts_dir / "button1.txt", "w", encoding="utf-8") as f:
                             f.write(new_prompt)
+                        self.single_prompt1 = self.prompt_handler.read_file("button1.txt")
                     else:
                         with open(self.prompt_handler.prompts_dir / "button3.txt", "w", encoding="utf-8") as f:
                             f.write(new_prompt)
+                        self.single_prompt2 = self.prompt_handler.read_file("button3.txt")
                 messagebox.showinfo("Success", "Prompt saved successfully!")
                 popup.destroy()
             except Exception as e:
