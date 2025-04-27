@@ -5,7 +5,7 @@ from dotenv import load_dotenv
 class Rewriter:
     def __init__(self):
         load_dotenv()
-        openai.api_key = os.getenv("OPENAI_API_KEY")
+        self.client = openai.OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
         self.conversation = []
         self.model = "gpt-4-turbo"
 
@@ -20,7 +20,7 @@ class Rewriter:
 
     def rewriter(self, model="gpt-4-turbo"):
         try:
-            response = openai.ChatCompletion.create(
+            response = self.client.chat.completions.create(
                 model=model,
                 messages=self.conversation,
                 temperature=0.7,
